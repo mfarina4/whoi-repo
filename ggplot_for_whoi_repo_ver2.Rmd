@@ -125,4 +125,18 @@ ggsave("myplot.png", myplot )
 
 ```
 
+```{r}
+library(plotly)
+
+ggplotly(myplot)
+```
+
+
+
+
+
+#dplyr
+
+
+
 
