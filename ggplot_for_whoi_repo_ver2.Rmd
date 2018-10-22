@@ -68,3 +68,59 @@ ggplot(data = se) +
 
 ```
 
+# Faceting plots
+
+```{r}
+ggplot(data = se) +
+  geom_point(aes(x=year, y =  visitors, color = park_name)) +
+  facet_wrap(~ state, scales = "free") +
+  theme(legend.title = element_blank(),
+        axis.text.x = element_text(angle = 90, size=14))
+  
+```
+
+
+
+
+```{r}
+ggplot(data = se) +
+  geom_jitter(aes(x=park_name, y =  visitors, color=park_name ), alpha = 0.4, width = 0.1) +
+  coord_flip()
+  
+```
+
+
+```{r}
+ggplot(se) +
+  geom_line(aes(x=year, y =  visitors, color=park_name )) +
+  theme_bw()
+```
+
+#Multiple geoms
+
+```{r}
+ggplot(acadia, aes(x=year, y=visitors, color=year)) +
+  geom_point() +
+  geom_line() +
+  geom_smooth() +
+  theme_bw()
+```
+
+# Bar Charts
+
+```{r}
+ggplot(data = visit_16, aes(x=state, y= visitors, fill = park_name)) +
+  geom_bar(stat = "identity", position = 'dodge')
+```
+
+#Save a ggplot
+
+```{r}
+myplot <- ggplot(data = visit_16, aes(x=state, y= visitors, fill = park_name)) +
+  geom_bar(stat = "identity", position = 'dodge')
+
+myplot
+
+ggsave("myplot.png", myplot )
+
+```
