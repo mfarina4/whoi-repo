@@ -63,10 +63,44 @@ gap_cambodia <- gapminder %>%
 
 ##Challenge: find max gdp of Egypt and vietnam, create a new column.
 
-mymax = gapminder %>%  filter(country == c("Egypt","Vietnam"))  %>% select('gdpPercap')   %>% max()
-gapminder %>% mutate(max = mymax)
+gapminder %>%
+  filter(country == "Egypt") %>%
+  mutate(gdp = pop * gdpPercap) %>%
+  mutate(max_gdp = max(gdp))
+
+## you can also create multiple variables within the same mutate(), and line them up so they are easier to read:
+gapminder %>%
+  filter(country == "Vietnam") %>% 
+  mutate(gdp     = pop * gdpPercap,
+         max_gdp = max(gdp))
+
 
 ```
+
+
+
+## `group_by()` groups!
+
+
+```{r}
+
+library(tidyverse)  # install.packages("tidyverse")
+
+gapminder <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv')
+
+gdpGrouped <- gapminder %>% group_by(country)  %>%
+              mutate(gdp = pop * gdpPercap,
+              max_gdp = max(gdp))  %>% ungroup()
+
+
+
+```
+
+
+## `arrange()`
+
+
+
 
 
 
